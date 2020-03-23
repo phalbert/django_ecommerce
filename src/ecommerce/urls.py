@@ -20,12 +20,14 @@ from django.contrib import admin
 from django.urls import path
 
 from .views import home, login, register_page
+from django.conf.urls import include
 
 urlpatterns = [
     path('', home, name='home'),
     path('login/', login, name='login'),
     path('register/', register_page, name='register'),
     path('admin/', admin.site.urls),
+    path('', include('products.urls')),
 ]
 
 if settings.DEBUG:

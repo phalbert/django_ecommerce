@@ -1,5 +1,5 @@
 <ul>
 {% for product in products %}
-    <li>{{ product.title }}</li>
+    <li><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></li>
 {% endfor %}
 </ul>

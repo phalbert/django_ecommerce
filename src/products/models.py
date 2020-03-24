@@ -33,3 +33,6 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Product, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return f'/products/{self.slug}/'

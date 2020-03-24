@@ -2,7 +2,12 @@
     <img class="card-img-top" src="{{ object.image.url }}" alt="Card image cap">
     <div class="card-body">
         <h5 class="card-title">{{ object.title }}</h5>
+        {%if not action %}
         <p class="card-text">{{ object.description }}</p>
+        {% endif %}
         <a href="{{ object.get_absolute_url }}" class="btn btn-primary">{%if action %}{{ action }}{% else %}$ {{ object.price }}{% endif %}</a>
+        {%if not action %}
+        <a href="{% url 'products:list' %}" class="btn btn-warning">Back</a>
+        {% endif %}
     </div>
 </div>

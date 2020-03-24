@@ -1,5 +1,16 @@
-<ul>
-{% for product in products %}
-    <li>{{ product.title }}</li>
-{% endfor %}
-</ul>
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+    {% for product in products %}
+    <div class="col-md-auto">
+        {% include 'products/components/card.html' with object=product action='View' %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

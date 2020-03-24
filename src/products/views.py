@@ -8,7 +8,7 @@ class ProductListView(generic.ListView):
     context_object_name = 'products'
     paginate_by = 10
     ordering = ['-id']
-
+      
     def get_context_data(self, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
         items = self.get_queryset()
@@ -22,7 +22,18 @@ class ProductListView(generic.ListView):
             items = paginator.page(paginator.num_pages)
         context['products'] = items
         return context
-        
+
+class ProductFeaturedListView(generic.ListView):
+    model = Product
+    context_object_name = 'products'
+    template_name = 'products/featured_list.html'
+    paginate_by = 10
+    ordering = ['-id']
+
+    def get_queryset(self, *args, **kwargs):
+        return Product.objects.featured()
+      
+
 class ProductDetailView(generic.DetailView):
     model = Product
     context_object_name = 'products'

@@ -37,9 +37,11 @@
       class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
   {% endfor %}
   {% endif %}
-
-  {% block content %}
-  {% endblock content %}
+  <div class="container">
+    <!-- Content here -->
+    {% block content %}
+    {% endblock content %}
+  </div>
 
   {% block modal %}{% endblock modal %}
 

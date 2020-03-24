@@ -1,4 +1,10 @@
-<h1>{{ object.title }}</h1>
-<p>{{ object.description }}</p>
-<img src="{{ object.image.url }}" class="img-fluid">
-<p>Price: {{ object.price }}</p>
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block content %}
+{% include 'products/components/card.html' with object=object %}
+{% endblock content %}

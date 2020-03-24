@@ -1,6 +1,7 @@
 import os, random
 from django.db import models
 from django.utils.text import slugify
+from django.urls import reverse
 
 def get_file_ext(filename):
     base_name = os.path.basename(filename)
@@ -35,4 +36,4 @@ class Product(models.Model):
         super(Product, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return f'/products/{self.slug}/'
+        return reverse('products:detail', args=[self.slug])

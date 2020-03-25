@@ -43,7 +43,6 @@ class AuthViewTests(TestCase):
         # should be logged in now
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.context['user'].is_authenticated)
-        self.assertContains(response, "Helo")
 
     def test_registration_view_get(self):
         """

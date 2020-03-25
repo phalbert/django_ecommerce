@@ -53,3 +53,14 @@ class ProductDetailView(generic.DetailView):
             items = paginator.page(paginator.num_pages)
         context['products'] = items
         return context
+
+class ProductSearchListView(generic.ListView):
+    model = Product
+    context_object_name = 'products'
+    template_name = 'products/search_results.html'
+    # paginate_by = 10
+    # ordering = ['-id']
+
+    def get_queryset(self, *args, **kwargs):
+        query = self.request.GET.get('q', None)
+        return Product.objects.search(query)

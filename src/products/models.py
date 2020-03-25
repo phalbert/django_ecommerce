@@ -2,6 +2,7 @@ import os, random
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from django.db.models import Q
 
 def get_file_ext(filename):
     base_name = os.path.basename(filename)
@@ -17,6 +18,10 @@ def upload_image_path(instance, filename):
 class ProductManager(models.Manager):
     def featured(self):
         return self.get_queryset().filter(featured=True)
+    
+    def search(self, query):
+        lookups = Q(title__icontains=query) | Q(description__icontains=query)
+        return self.get_queryset().filter(lookups)
 
 class Product(models.Model):
     title = models.CharField(max_length=120)
